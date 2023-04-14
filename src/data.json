@@ -12,5 +12,19 @@
 				}
 			]
 		}
+	],
+	"social": [
+		{
+			"icon": "/assets/github.svg",
+			"url": "https://github.com/chr33s"
+		},
+		{
+			"icon": "/assets/linkedin.svg",
+			"url": "https://linkedin.com/chr33s"
+		},
+		{
+			"icon": "/assets/twitter.svg",
+			"url": "https://twitter.com/chr33s"
+		}
 	]
 }

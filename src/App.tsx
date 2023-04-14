@@ -615,9 +615,22 @@ function PortfolioMainContact() {
 			id="contact"
 		>
 			<div className="flex w-full">
-				<h2 className="text-3xl font-medium text-gray-700 mb-9 w-1/3 self-start">
-					Contact
-				</h2>
+				<div className="w-1/3 self-start">
+					<h2 className="text-3xl font-medium text-gray-700 mb-6">Contact</h2>
+					<ul className="flex flex-row space-x-4">
+						{data.social.map((profile, index) => (
+							<li key={index}>
+								<a href={profile.url}>
+									<img
+										alt=""
+										className="opacity-25 hover:opacity-100 w-5"
+										src={profile.icon}
+									/>
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
 				<Form
 					errorMessage="Form submission failed"
 					query={query}
