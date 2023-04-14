@@ -676,10 +676,8 @@ function PortfolioMainExpertise() {
 			</h2>
 
 			{data.portfolio.map((item, index) => (
-				<dl className="mb-12 grid grid-cols-3 gap-3" key={index}>
-					<dt className="text-xl font-medium mb-3 col-span-3">
-						{item.heading}
-					</dt>
+				<dl className="mb-12 grid grid-cols-2 gap-12" key={index}>
+					<dt className="text-xl font-medium col-span-2">{item.heading}</dt>
 					{item.projects.map((project, i) => (
 						<dd
 							className="group relative border border-gray-300 flex-1 h-full overflow-x-hidden overflow-y-scroll"
