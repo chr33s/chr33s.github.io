@@ -1,0 +1,16 @@
+{
+	"name": "Chris",
+	"heading": "Developer, product owner, project manager and occasional designer",
+	"description": "I'm chris a entrepreneur and polyglot technologist currently based in Vietnam. I'm the founder of a few companies, currently working on Glue a bootstrapped digital agency where I spend most of my time on building bespoke e-commerce solutions for clients around the world.",
+	"portfolio": [
+		{
+			"heading": "Web Development",
+			"projects": [
+				{
+					"description": "Project description...",
+					"images": ["https://placehold.co/512x512"]
+				}
+			]
+		}
+	]
+}
