@@ -589,10 +589,10 @@ function PortfolioMain() {
 	return (
 		<main className="flex flex-col justify-start w-full max-w-5xl mt-36">
 			<img alt={data.name} className="w-[64px] mb-6" src="/assets/icon.svg" />
-			<h1 className="text-5xl font-medium mb-6 leading-tight text-gray-800">
+			<h1 className="text-5xl font-medium mb-8 leading-tight text-gray-800">
 				{data.heading}
 			</h1>
-			<p className="text-lg mb-36 leading-relaxed text-gray-600">
+			<p className="text-lg mb-24 leading-relaxed text-gray-600">
 				{data.description}
 			</p>
 
@@ -616,7 +616,7 @@ function PortfolioMainContact() {
 		>
 			<div className="flex w-full">
 				<div className="w-1/3 self-start">
-					<h2 className="text-3xl font-medium text-gray-700 mb-6">Contact</h2>
+					<h2 className="text-3xl font-medium text-gray-700 mb-9">Contact</h2>
 					<ul className="flex flex-row space-x-4">
 						{data.social.map((profile, index) => (
 							<li key={index}>
@@ -684,12 +684,12 @@ function PortfolioMainContact() {
 function PortfolioMainExpertise() {
 	return (
 		<section className="mt-6" id="expertise">
-			<h2 className="text-3xl font-medium text-gray-700 mb-9 mt-6">
+			<h2 className="text-3xl font-medium text-gray-700 mb-6 mt-6">
 				Expertise
 			</h2>
 
 			{data.portfolio.map((item, index) => (
-				<dl className="mb-12 grid grid-cols-2 gap-12" key={index}>
+				<dl className="mb-9 grid grid-cols-2 gap-12" key={index}>
 					<dt className="text-xl font-medium col-span-2">{item.heading}</dt>
 					{item.projects.map((project, i) => (
 						<dd
