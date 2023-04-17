@@ -11,3 +11,6 @@ insert_final_newline = false
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.yaml]
+indent_style = space
