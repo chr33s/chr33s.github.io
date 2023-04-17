@@ -128,8 +128,8 @@ function Form({
 	...props
 }: FormProps) {
 	const withRecursiveProps = React.useCallback(
-		(children: React.ReactNode, fn: (child: any) => object): any => {
-			return React.Children.map(children, (child) => {
+		(children: React.ReactNode, fn: (child: any) => object): any =>
+			React.Children.map(children, (child) => {
 				if (!React.isValidElement(child)) {
 					return child;
 				}
@@ -149,8 +149,7 @@ function Form({
 					props = fn(child);
 				}
 				return React.cloneElement(child, props);
-			});
-		},
+			}),
 		[]
 	);
 
@@ -693,11 +692,11 @@ function PortfolioMainExpertise() {
 					<dt className="text-xl font-medium col-span-2">{item.heading}</dt>
 					{item.projects.map((project, i) => (
 						<dd
-							className="group relative border border-gray-300 flex-1 h-full overflow-x-hidden overflow-y-scroll"
+							className="group relative border border-gray-200 flex-1 h-full overflow-x-hidden overflow-y-scroll"
 							key={`${index}-${i}`}
 						>
 							<img src={project.images[0]} />
-							<div className="w-full bg-gray-100 bg-opacity-90 border-t border-t-gray-300 hidden group-hover:block absolute -mt-[20%] min-h-[20%]">
+							<div className="w-full bg-gray-50 bg-opacity-90 border-t border-t-gray-200 hidden group-hover:block absolute -mt-[20%] min-h-[20%]">
 								<p className="p-4">{project.description}</p>
 							</div>
 						</dd>
