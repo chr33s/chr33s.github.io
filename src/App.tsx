@@ -309,7 +309,7 @@ function Form({
 
 	return (
 		<form
-			className="flex flex-col items-end sm:w-2/3"
+			className="flex flex-col items-end w-full sm:w-2/3"
 			{...props}
 			onSubmit={onSubmit}
 		>
@@ -546,7 +546,7 @@ function Notification({ type = "info", ...props }: NotificationProps) {
 
 function Page({ children }: Props) {
 	return (
-		<main className="flex min-h-screen w-screen flex-col items-center justify-center">
+		<main className="p-6 sm:p-0 flex min-h-screen w-screen flex-col items-center justify-center">
 			{children}
 		</main>
 	);
@@ -592,10 +592,10 @@ function PortfolioMain() {
 	return (
 		<main className="flex flex-col justify-start w-full max-w-5xl mt-36">
 			<img alt={data.name} className="w-[64px] mb-6" src="/assets/icon.svg" />
-			<h1 className="text-5xl font-medium mb-8 leading-tight text-gray-800">
+			<h1 className="text-3xl sm:text-5xl font-medium mb-8 leading-tight text-gray-800">
 				{data.heading}
 			</h1>
-			<p className="text-lg mb-24 leading-relaxed text-gray-600">
+			<p className="text-base sm:text-lg mb-24 leading-relaxed text-gray-600">
 				{data.description}
 			</p>
 
@@ -614,13 +614,15 @@ function PortfolioMainContact() {
 
 	return (
 		<section
-			className="flex justify-center items-center mt-6 mb-36 h-screen"
+			className="flex justify-center items-center sm:mt-6 sm:mb-36 h-screen"
 			id="contact"
 		>
-			<div className="flex w-full">
-				<div className="w-1/3 self-start">
-					<h2 className="text-3xl font-medium text-gray-700 mb-9">Contact</h2>
-					<ul className="flex flex-row space-x-4">
+			<div className="flex w-full flex-col sm:flex-row">
+				<div className="w-full sm:w-1/3 self-start mb-6 sm:mb-0">
+					<h2 className="text-3xl font-medium text-gray-700 mb-3 sm:mb-9">
+						Contact
+					</h2>
+					<ul className="flex flex-row space-x-4 mb-3 sm:mb-0">
 						{data.social.map((profile, index) => (
 							<li key={index}>
 								<a href={profile.url}>
@@ -700,8 +702,8 @@ function PortfolioMainExpertise() {
 
 function PortfolioMainExpertisePortfolio({ portfolio }: { portfolio: any }) {
 	return (
-		<dl className="mb-9 grid grid-cols-2 gap-12">
-			<dt className="text-xl font-medium col-span-2">{portfolio.heading}</dt>
+		<dl className="mb-6 sm:mb-9 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12">
+			<dt className="text-xl font-medium sm:col-span-2">{portfolio.heading}</dt>
 			{portfolio.projects.map((project: any, index: number) => (
 				<PortfolioMainExpertisePortfolioProject key={index} project={project} />
 			))}
@@ -734,7 +736,7 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 					/>
 				))}
 			</div>
-			<div className="w-full bg-gray-50 bg-opacity-90 border-t border-t-gray-200 hidden group-hover:block absolute -mt-[20%] min-h-[20%]">
+			<div className="w-full bg-gray-50 bg-opacity-90 border-t border-t-gray-200 hidden group-hover:block absolute -mt-[20%] min-h-[20%] text-sm sm:text-base">
 				<p className="p-4">{project.description}</p>
 			</div>
 		</dd>
