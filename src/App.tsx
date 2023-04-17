@@ -577,10 +577,20 @@ function PortfolioHeader() {
 	return (
 		<header className="flex flex-row justify-end w-full max-w-5xl mt-6">
 			<nav className="space-x-6 self-end underline text-lg text-gray-600">
-				<a className="hover:text-gray-800" href="#expertise" onClick={onClick}>
+				<a
+					aria-label="Link to Expertise"
+					className="hover:text-gray-800"
+					href="#expertise"
+					onClick={onClick}
+				>
 					Expertise
 				</a>
-				<a className="hover:text-gray-800" href="#contact" onClick={onClick}>
+				<a
+					aria-label="Link to Contact form"
+					className="hover:text-gray-800"
+					href="#contact"
+					onClick={onClick}
+				>
 					Contact
 				</a>
 			</nav>
@@ -591,7 +601,11 @@ function PortfolioHeader() {
 function PortfolioMain() {
 	return (
 		<main className="flex flex-col justify-start w-full max-w-5xl mt-36">
-			<img alt={data.name} className="w-[64px] mb-6" src="/assets/icon.svg" />
+			<img
+				alt={data.name}
+				className="w-[64px] h-auto mb-6"
+				src="/assets/icon.svg"
+			/>
 			<h1 className="text-3xl sm:text-5xl font-medium mb-8 leading-tight text-gray-800">
 				{data.heading}
 			</h1>
@@ -623,17 +637,23 @@ function PortfolioMainContact() {
 						Contact
 					</h2>
 					<ul className="flex flex-row space-x-4 mb-3 sm:mb-0">
-						{data.social.map((profile, index) => (
-							<li key={index}>
-								<a href={profile.url}>
-									<img
-										alt=""
-										className="opacity-25 hover:opacity-100 w-5"
-										src={profile.icon}
-									/>
-								</a>
-							</li>
-						))}
+						{data.social.map((profile, index) => {
+							const provider = toTitleCase(
+								profile.url.match(/^https?:\/\/([a-z-_]*)/i)?.[1]
+							);
+
+							return (
+								<li key={index}>
+									<a aria-label={`${provider} profile`} href={profile.url}>
+										<img
+											alt=""
+											className="opacity-25 hover:opacity-100 w-5 h-auto"
+											src={profile.icon}
+										/>
+									</a>
+								</li>
+							);
+						})}
 					</ul>
 				</div>
 				<Form
@@ -719,7 +739,7 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 			{project.images.map((image: any, index: number) => (
 				<img
 					alt=""
-					className={clsx(selected !== index && "hidden")}
+					className={clsx("w-full h-auto", selected !== index && "hidden")}
 					key={index}
 					src={image}
 				/>
@@ -745,7 +765,12 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 
 function PortfolioPage() {
 	React.useEffect(() => {
-		window.document.title = `${data.name}'s Portfolio`;
+		const doc = window.document;
+		const title = `${data.name}'s Portfolio`;
+		doc.title = title;
+		doc
+			.querySelector('meta[name="description"]')
+			?.setAttribute("content", truncate(data.description, 128));
 	}, []);
 
 	return (
@@ -755,4 +780,42 @@ function PortfolioPage() {
 			<PortfolioFooter />
 		</Page>
 	);
+}
+
+function toTitleCase(str: string | undefined) {
+	return (
+		str?.replace(
+			/\w\S*/g,
+			(txt) => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase()
+		) ?? ""
+	);
+}
+
+function truncate(str: string, limit: number) {
+	const chars = str.split("");
+
+	for (const index of chars.keys()) {
+		if (index === limit) {
+			for (let i = index; i > 0; i--) {
+				const char = chars[i];
+				console.log({ index, limit, i, char });
+				if (char === " ") {
+					chars.splice(i);
+					break;
+				}
+			}
+
+			const first = chars.findIndex((v) => v === " ");
+			if (index < first) {
+				chars.splice(first);
+			}
+			break;
+		}
+	}
+
+	if (chars.length < limit) {
+		chars.push("...");
+	}
+
+	return chars.join("");
 }
