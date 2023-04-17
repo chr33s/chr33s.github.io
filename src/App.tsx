@@ -684,26 +684,56 @@ function PortfolioMainExpertise() {
 	return (
 		<section className="mt-6" id="expertise">
 			<h2 className="text-3xl font-medium text-gray-700 mb-6 mt-6">
-				Expertise
+				Project Expertise
 			</h2>
 
-			{data.portfolio.map((item, index) => (
-				<dl className="mb-9 grid grid-cols-2 gap-12" key={index}>
-					<dt className="text-xl font-medium col-span-2">{item.heading}</dt>
-					{item.projects.map((project, i) => (
-						<dd
-							className="group relative border border-gray-200 flex-1 h-full overflow-x-hidden overflow-y-scroll"
-							key={`${index}-${i}`}
-						>
-							<img src={project.images[0]} />
-							<div className="w-full bg-gray-50 bg-opacity-90 border-t border-t-gray-200 hidden group-hover:block absolute -mt-[20%] min-h-[20%]">
-								<p className="p-4">{project.description}</p>
-							</div>
-						</dd>
-					))}
-				</dl>
+			{data.portfolio.map((portfolio, index) => (
+				<PortfolioMainExpertisePortfolio key={index} portfolio={portfolio} />
 			))}
 		</section>
+	);
+}
+
+function PortfolioMainExpertisePortfolio({ portfolio }: { portfolio: any }) {
+	return (
+		<dl className="mb-9 grid grid-cols-2 gap-12">
+			<dt className="text-xl font-medium col-span-2">{portfolio.heading}</dt>
+			{portfolio.projects.map((project: any, index: number) => (
+				<PortfolioMainExpertisePortfolioProject key={index} project={project} />
+			))}
+		</dl>
+	);
+}
+
+function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
+	const [selected, setSelected] = React.useState(0);
+
+	return (
+		<dd className="group relative border border-gray-200 flex-1 h-full overflow-x-hidden overflow-y-scroll">
+			{project.images.map((image: any, index: number) => (
+				<img
+					alt=""
+					className={clsx(selected !== index && "hidden")}
+					key={index}
+					src={image}
+				/>
+			))}
+			<div className="hidden group-hover:flex w-full justify-center space-x-2 absolute top-6 left-0">
+				{project.images.map((_: any, index: number) => (
+					<button
+						className={clsx(
+							"block w-2 h-2 rounded-full",
+							selected === index ? "bg-gray-900" : "bg-gray-200"
+						)}
+						key={`${index}-pagination`}
+						onClick={() => setSelected(index)}
+					/>
+				))}
+			</div>
+			<div className="w-full bg-gray-50 bg-opacity-90 border-t border-t-gray-200 hidden group-hover:block absolute -mt-[20%] min-h-[20%]">
+				<p className="p-4">{project.description}</p>
+			</div>
+		</dd>
 	);
 }
 
