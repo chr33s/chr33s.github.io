@@ -242,7 +242,7 @@ function Form({
 		[]
 	);
 
-	const [errors, setErrors] = React.useState<any>();
+	const [errors, setErrors] = React.useState<any>([]);
 	const [isSubmitting, setSubmitting] = React.useState(false);
 	const [notification, setNotification] = React.useState<any>(null);
 
@@ -294,13 +294,17 @@ function Form({
 		[errorMessage, query, successMessage]
 	);
 
+	const withRecursivePropsCallback = React.useCallback(
+		(child: any) => ({
+			error: hasValidationError(errors, child.props.name) && "invalid",
+			isSubmitting,
+		}),
+		[errors, isSubmitting]
+	);
+
 	const childrenWithProps = React.useMemo(
-		() =>
-			withRecursiveProps(children, (child) => ({
-				error: hasValidationError(errors, child.props.name) && "invalid",
-				isSubmitting,
-			})),
-		[children, errors, isSubmitting]
+		() => withRecursiveProps(children, withRecursivePropsCallback),
+		[children]
 	);
 
 	return (
