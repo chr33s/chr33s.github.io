@@ -737,11 +737,16 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 
 	const onClick = React.useCallback((index: number) => {
 		setLoading(true);
-		setSelected(index);
 
-		setTimeout(() => {
-			setLoading(false);
-		}, 750);
+		const img = new window.Image();
+		img.onload = () => {
+			setSelected(index);
+
+			setTimeout(() => {
+				setLoading(false);
+			}, 750);
+		};
+		img.src = project.images[index];
 	}, []);
 
 	return (
