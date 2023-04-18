@@ -7,6 +7,16 @@ export default {
 	content: ["./index.html", "./**/*.{ts,tsx}"],
 	plugins: [
 		forms(),
+		plugin(({ matchUtilities, theme }) => {
+			matchUtilities(
+				{
+					"animation-delay": (value) => ({
+						"animation-delay": value,
+					}),
+				},
+				{ values: theme("transitionDelay") }
+			);
+		}),
 		plugin(({ matchUtilities }) => {
 			matchUtilities(
 				{
