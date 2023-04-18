@@ -733,17 +733,40 @@ function PortfolioMainExpertisePortfolio({ portfolio }: { portfolio: any }) {
 
 function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 	const [selected, setSelected] = React.useState(0);
+	const [loading, setLoading] = React.useState(false);
+
+	const onClick = React.useCallback((index: number) => {
+		setLoading(true);
+		setSelected(index);
+
+		setTimeout(() => {
+			setLoading(false);
+		}, 750);
+	}, []);
 
 	return (
 		<dd className="group relative border border-gray-200 flex-1 h-full overflow-x-hidden overflow-y-scroll">
-			{project.images.map((image: any, index: number) => (
-				<img
-					alt=""
-					className={clsx("w-full h-auto", selected !== index && "hidden")}
-					key={index}
-					src={image}
-				/>
-			))}
+			{project.images.map((image: any, index: number) =>
+				selected !== index ? null : (
+					<React.Fragment key={index}>
+						<img
+							alt=""
+							className={clsx(
+								"w-full h-auto",
+								selected !== index && "hidden",
+								loading && "invisible"
+							)}
+							key={index}
+							src={image}
+						/>
+						{loading && (
+							<span className="absolute left-1/2 top-1/2 -ml-[22px] -mt-[12px]">
+								<Loading />
+							</span>
+						)}
+					</React.Fragment>
+				)
+			)}
 			{project.images.length > 1 && (
 				<div className="hidden group-hover:flex w-full justify-center space-x-2 absolute top-6 left-0">
 					{project.images.map((_: any, index: number) => (
@@ -753,7 +776,7 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 								selected === index ? "bg-gray-900" : "bg-gray-200"
 							)}
 							key={`${index}-pagination`}
-							onClick={() => setSelected(index)}
+							onClick={() => onClick(index)}
 						/>
 					))}
 				</div>
