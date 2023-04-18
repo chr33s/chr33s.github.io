@@ -744,18 +744,20 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 					src={image}
 				/>
 			))}
-			<div className="hidden group-hover:flex w-full justify-center space-x-2 absolute top-6 left-0">
-				{project.images.map((_: any, index: number) => (
-					<button
-						className={clsx(
-							"block w-2 h-2 rounded-full",
-							selected === index ? "bg-gray-900" : "bg-gray-200"
-						)}
-						key={`${index}-pagination`}
-						onClick={() => setSelected(index)}
-					/>
-				))}
-			</div>
+			{project.images.length > 1 && (
+				<div className="hidden group-hover:flex w-full justify-center space-x-2 absolute top-6 left-0">
+					{project.images.map((_: any, index: number) => (
+						<button
+							className={clsx(
+								"block w-2 h-2 rounded-full",
+								selected === index ? "bg-gray-900" : "bg-gray-200"
+							)}
+							key={`${index}-pagination`}
+							onClick={() => setSelected(index)}
+						/>
+					))}
+				</div>
+			)}
 			<div className="w-full bg-gray-50 bg-opacity-90 border-t border-t-gray-200 hidden group-hover:block absolute -mt-[20%] min-h-[20%] text-sm sm:text-base">
 				<p className="p-4">{project.description}</p>
 			</div>
