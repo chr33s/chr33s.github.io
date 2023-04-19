@@ -765,8 +765,8 @@ function PortfolioMainExpertise() {
 
 function PortfolioMainExpertisePortfolio({ portfolio }: { portfolio: any }) {
 	return (
-		<dl className="mb-6 sm:mb-9 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12">
-			<dt className="text-xl font-medium sm:col-span-2">{portfolio.heading}</dt>
+		<dl className="mb-6 sm:mb-9 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12">
+			<dt className="text-xl font-medium sm:col-span-3">{portfolio.heading}</dt>
 			{portfolio.projects.map((project: any, index: number) => (
 				<PortfolioMainExpertisePortfolioProject key={index} project={project} />
 			))}
