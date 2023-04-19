@@ -320,6 +320,47 @@ function Form({
 	);
 }
 
+type ImageProps = {
+	alt?: string;
+	className?: string;
+	loading?: "eager" | "lazy";
+	src: string;
+};
+
+function Image(props: ImageProps) {
+	const [src, setSrc] = React.useState<string | null>(null);
+
+	React.useEffect(() => {
+		const img = new window.Image();
+		img.onload = () => {
+			setTimeout(() => {
+				setSrc(props.src);
+			}, 750);
+		};
+		img.src = props.src;
+
+		return () => {
+			img.src = "";
+		};
+	}, [props.src]);
+
+	return (
+		<div className="relative">
+			<img
+				loading="lazy"
+				{...props}
+				className={clsx("w-full h-auto", props.className, !src && "invisible")}
+			/>
+
+			{!src && (
+				<span className="absolute left-1/2 top-1/2 -ml-[22px] -mt-[12px]">
+					<Loading />
+				</span>
+			)}
+		</div>
+	);
+}
+
 type InputProps = {
 	className?: string;
 	disabled?: boolean;
@@ -604,6 +645,7 @@ function PortfolioMain() {
 			<img
 				alt={data.name}
 				className="w-[64px] h-auto mb-6"
+				loading="eager"
 				src="/assets/icon.svg"
 			/>
 			<h1 className="text-3xl sm:text-5xl font-medium mb-8 leading-tight text-gray-800">
@@ -648,6 +690,7 @@ function PortfolioMainContact() {
 										<img
 											alt=""
 											className="opacity-25 hover:opacity-100 w-5 h-auto"
+											loading="lazy"
 											src={profile.icon}
 										/>
 									</a>
@@ -753,23 +796,16 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 		<dd className="group relative border border-gray-200 flex-1 h-full overflow-x-hidden overflow-y-scroll">
 			{project.images.map((image: any, index: number) =>
 				selected !== index ? null : (
-					<React.Fragment key={index}>
-						<img
-							alt=""
-							className={clsx(
-								"w-full h-auto",
-								selected !== index && "hidden",
-								loading && "invisible"
-							)}
-							key={index}
-							src={image}
-						/>
-						{loading && (
-							<span className="absolute left-1/2 top-1/2 -ml-[22px] -mt-[12px]">
-								<Loading />
-							</span>
+					<Image
+						alt=""
+						className={clsx(
+							"w-full h-auto",
+							selected !== index && "hidden",
+							loading && "invisible"
 						)}
-					</React.Fragment>
+						key={index}
+						src={image}
+					/>
 				)
 			)}
 			{project.images.length > 1 && (
