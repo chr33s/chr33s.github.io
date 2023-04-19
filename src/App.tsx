@@ -776,18 +776,11 @@ function PortfolioMainExpertisePortfolio({ portfolio }: { portfolio: any }) {
 
 function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 	const [selected, setSelected] = React.useState(0);
-	const [loading, setLoading] = React.useState(false);
 
 	const onClick = React.useCallback((index: number) => {
-		setLoading(true);
-
 		const img = new window.Image();
 		img.onload = () => {
 			setSelected(index);
-
-			setTimeout(() => {
-				setLoading(false);
-			}, 750);
 		};
 		img.src = project.images[index];
 	}, []);
@@ -798,12 +791,7 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 				selected !== index ? null : (
 					<Image
 						alt=""
-						className={clsx(
-							"w-full h-auto",
-							selected !== index && "hidden",
-							loading && "invisible"
-						)}
-						key={index}
+						className={clsx("w-full h-auto", selected !== index && "hidden")}
 						src={image}
 					/>
 				)
