@@ -788,9 +788,7 @@ function PortfolioMainExpertiseStack() {
 
 			<div className="space-x-5 flex">
 				{stack.map((image: string, index: number) => {
-					const title = toTitleCase(
-						image.match(/\/([a-z-_]*).[a-z]*$/i)?.[1]
-					);
+					const title = toTitleCase(image.match(/\/([a-z-_]*).[a-z]*$/i)?.[1]);
 
 					return (
 						<img
