@@ -95,15 +95,15 @@
 	],
 	"social": [
 		{
-			"icon": "/assets/github.svg",
+			"icon": "/assets/social/github.svg",
 			"url": "https://github.com/chr33s"
 		},
 		{
-			"icon": "/assets/linkedin.svg",
+			"icon": "/assets/social/linkedin.svg",
 			"url": "https://linkedin.com/in/chr33s/"
 		},
 		{
-			"icon": "/assets/twitter.svg",
+			"icon": "/assets/social/twitter.svg",
 			"url": "https://twitter.com/chr33s"
 		}
 	]
