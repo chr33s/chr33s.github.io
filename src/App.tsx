@@ -750,16 +750,6 @@ function PortfolioMainContact() {
 }
 
 function PortfolioMainExpertise() {
-	const stack = React.useMemo(() => {
-		const stack: string[] = [];
-		for (const portfolio of data.portfolio) {
-			for (const project of portfolio.projects) {
-				stack.push(...project.stack);
-			}
-		}
-		return [...new Set(stack)].sort();
-	}, []);
-
 	return (
 		<section className="mt-6" id="expertise">
 			<h2 className="text-3xl font-medium text-gray-700 mb-6 mt-6">
@@ -770,32 +760,50 @@ function PortfolioMainExpertise() {
 				<PortfolioMainExpertisePortfolio key={index} portfolio={portfolio} />
 			))}
 
-			{stack?.length > 0 && (
-				<>
-					<h3 className="text-2xl font-medium text-gray-700 mb-9 pt-16">
-						Technology Stack
-					</h3>
-
-					<div className="space-x-5 flex">
-						{stack.map((image: string, index: number) => {
-							const title = toTitleCase(
-								image.match(/\/([a-z-_]*).[a-z]*$/i)?.[1]
-							);
-
-							return (
-								<img
-									alt={title}
-									className="w-9 h-9 grayscale hover:grayscale-0"
-									key={`${index}-stack`}
-									src={image}
-									title={title}
-								/>
-							);
-						})}
-					</div>
-				</>
-			)}
+			<PortfolioMainExpertiseStack />
 		</section>
+	);
+}
+
+function PortfolioMainExpertiseStack() {
+	const stack = React.useMemo(() => {
+		const stack: string[] = [];
+		for (const portfolio of data.portfolio) {
+			for (const project of portfolio.projects) {
+				stack.push(...project.stack);
+			}
+		}
+		return [...new Set(stack)].sort();
+	}, []);
+
+	if (stack?.length === 0) {
+		return null;
+	}
+
+	return (
+		<>
+			<h3 className="text-2xl font-medium text-gray-700 mb-9 pt-16">
+				Technology Stack
+			</h3>
+
+			<div className="space-x-5 flex">
+				{stack.map((image: string, index: number) => {
+					const title = toTitleCase(
+						image.match(/\/([a-z-_]*).[a-z]*$/i)?.[1]
+					);
+
+					return (
+						<img
+							alt={title}
+							className="w-9 h-9 grayscale hover:grayscale-0"
+							key={`${index}-stack`}
+							src={image}
+							title={title}
+						/>
+					);
+				})}
+			</div>
+		</>
 	);
 }
 
