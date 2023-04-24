@@ -854,7 +854,6 @@ function truncate(str: string, limit: number) {
 		if (index === limit) {
 			for (let i = index; i > 0; i--) {
 				const char = chars[i];
-				console.log({ index, limit, i, char });
 				if (char === " ") {
 					chars.splice(i);
 					break;
