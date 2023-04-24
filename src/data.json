@@ -65,7 +65,7 @@
 			"heading": "eCommerce",
 			"projects": [
 				{
-					"description": "AAMP required the design and development of a bespoke product information management system (PIM), consolidating disparate data sources into a single source of truth for all product information, to be displayed on a network of Shopify Plus storefronts and external dealer portals. Services included: theme 2.0 development, custom storefront and admin app development on the Shopify Platform using Liquid, React and Polaris.",
+					"description": "AAMP required the design and development of a bespoke product information management system (PIM), consolidating disparate data sources into a single source of truth for all product information, to be displayed on a network of Shopify Plus storefronts and external dealer portals.",
 					"images": ["/assets/portfolio/aamp.svg"],
 					"stack": [
 						"/assets/stack/shopify.svg",
@@ -79,7 +79,7 @@
 					]
 				},
 				{
-					"description": "Stingerkits required the design and development of a bespoke product configurator storefront app to guide potential customers in building a kit for their unique vehicle. The project included development of a backoffice administration app to enable non-technical backoffice staff to administrate the data driving the configurator. Services included: theme development & integration, custom storefront & backoffice apps on the Shopify Platform using React, Polaris, Hydrogen and Oxygen.",
+					"description": "Stingerkits required the design and development of a bespoke product configurator storefront app to guide potential customers in building a kit for their unique vehicle. The project included development of a backoffice administration app to enable non-technical backoffice staff to administrate the data driving the configurator.",
 					"images": ["/assets/portfolio/stingerkits.svg"],
 					"stack": [
 						"/assets/stack/shopify.svg",
@@ -154,7 +154,7 @@
 					]
 				},
 				{
-					"description": "Alpha Experience selected Google Cloud Platform (GCP), utilising Compute, Containers, Databases (PostgreSQL, Firebase Realtime Database), Developer Tools (gitops), Networking (DNS, CDN, Load Balancing, VPC), Operations (Logging, Monitoring, Tracing), Storage & Serverless. Delivered using Terraform HCL, infrastructure as code.",
+					"description": "Alpha Experience selected Google Cloud Platform (GCP), utilising Compute, Containers, Databases (PostgreSQL, Firebase Realtime Database), Developer Tools (gitops), Networking (DNS, CDN, Load Balancing, VPC), Operations (Logging, Monitoring, Tracing), Storage & Serverless. Delivered infrastructure as code.",
 					"images": ["/assets/portfolio/alphaxp.svg"],
 					"stack": [
 						"/assets/stack/terraform.svg",
@@ -163,7 +163,7 @@
 					]
 				},
 				{
-					"description": "Nobuntu operating in a highly regulated environment selected Amazon Web Services (AWS), utilzing Compute (EC2, Lambda), Storage, Database (DocumentDB, DynamoDB, MySQL), Networking, Security and Developer tooling (CodeArtifact, CodeBuild, CodePipeline). Delivered using Terraform HCL, infrastructure as code.",
+					"description": "Nobuntu operating in a highly regulated environment selected Amazon Web Services (AWS), utilzing Compute (EC2, Lambda), Storage, Database (DocumentDB, DynamoDB, MySQL), Networking, Security and Developer tooling (CodeArtifact, CodeBuild, CodePipeline). Delivered infrastructure as code.",
 					"images": ["/assets/portfolio/nobuntu.svg"],
 					"stack": ["/assets/stack/terraform.svg", "/assets/stack/aws.svg"]
 				}
