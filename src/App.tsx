@@ -850,7 +850,7 @@ function PortfolioMainExpertisePortfolioProject({ project }: { project: any }) {
 				</div>
 			)}
 			<div className="w-full bg-gray-50 bg-opacity-90 border-t border-t-gray-200 hidden group-hover:block absolute -mt-[20%] min-h-[20%] text-sm sm:text-base">
-				<p className="p-4">{project.description}</p>
+				<p className="p-4">{toJSX(project.description)}</p>
 
 				{project.stack?.length > 0 && (
 					<div className="px-4 space-x-4 mb-4 flex">
@@ -893,6 +893,17 @@ function PortfolioPage() {
 			<PortfolioFooter />
 		</Page>
 	);
+}
+
+function toJSX(str: string): React.ReactNode {
+	return str.split("\n").map((item, idx) => {
+		return (
+			<React.Fragment key={idx}>
+				{item}
+				<br />
+			</React.Fragment>
+		);
+	});
 }
 
 function toTitleCase(str: string | undefined) {
