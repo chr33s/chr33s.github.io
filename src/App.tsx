@@ -627,6 +627,14 @@ function PortfolioHeader() {
 					Expertise
 				</a>
 				<a
+					aria-label="Link to Testimonials"
+					className="hover:text-gray-800"
+					href="#testimonials"
+					onClick={onClick}
+				>
+					Testimonials
+				</a>
+				<a
 					aria-label="Link to Contact form"
 					className="hover:text-gray-800"
 					href="#contact"
@@ -656,6 +664,7 @@ function PortfolioMain() {
 			</p>
 
 			<PortfolioMainExpertise />
+			<PortfolioMainTestimonials />
 			<PortfolioMainContact />
 		</main>
 	);
@@ -856,6 +865,29 @@ function PortfolioPage() {
 			<PortfolioMain />
 			<PortfolioFooter />
 		</Page>
+	);
+}
+
+function PortfolioMainTestimonials() {
+	return (
+		<section className="mt-24" id="testimonials">
+			<h2 className="text-3xl font-medium text-gray-700 mb-12 mt-6">
+				Project Testimonials
+			</h2>
+
+			<div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-16">
+				{data.testimonials.map((testimonial: any, index: number) => (
+					<figure key={index}>
+						<blockquote className="text-sm mb-3 text-gray-600 before:text-gray-500 before:content-['\201C'] before:text-5xl before:inline before:leading-[5px] before:mr-[0.25em] before:align-[-0.4em] after:text-gray-500 after:content-['\201D'] after:text-5xl after:inline after:leading-[5px] after:ml-[0.25em] after:align-[-0.6em]">
+							{testimonial.description}
+						</blockquote>
+						<figcaption className="text-gray-700 italic">
+							{testimonial.name}
+						</figcaption>
+					</figure>
+				))}
+			</div>
+		</section>
 	);
 }
 
