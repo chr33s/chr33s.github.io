@@ -8,11 +8,13 @@
 			"projects": [
 				{
 					"description": "Zafe the smart community alarm system was conceptualized, prototyped and manufactured to address a growing problem in developing countries, namely crime. This initiative was self funded, and bootstrapped to product market fit. This required combining specialist skills from Business, Tech and UX to ensure the right product was built, for the right market and at the right time.",
-					"images": ["/assets/portfolio/zafe.svg"]
+					"images": ["/assets/portfolio/zafe.svg"],
+					"stack": []
 				},
 				{
 					"description": "Bleep ondemand services was a venture before its time. I learned allot on the product, with the key learning take away being that inorder to succeed, you need the right product in the right place, at the right price, at the right time. Being to early has been a theme in my career, but failure after all is a prerequisite to future success :)",
-					"images": ["/assets/portfolio/bleep.svg"]
+					"images": ["/assets/portfolio/bleep.svg"],
+					"stack": []
 				}
 			]
 		},
@@ -21,15 +23,41 @@
 			"projects": [
 				{
 					"description": "Alpha Experience a technology talent management startup required development of a bespoke web based candidate management system. That system built required managing the entire candidate lifecycle from onboarding, screening, interviewing, coaching, negiotiation, communication, to post placement value added services such as ongoing mentoring and networking.",
-					"images": ["/assets/portfolio/alphaxp.svg"]
+					"images": ["/assets/portfolio/alphaxp.svg"],
+					"stack": [
+						"/assets/stack/html.svg",
+						"/assets/stack/css.svg",
+						"/assets/stack/typescript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/postgresql.svg",
+						"/assets/stack/gcp.svg"
+					]
 				},
 				{
 					"description": "Cashfloo a financial literacy and basic cashflow management app was developed in partnership with a large national bank to promote financial literacy amongst the unbanked. The app was developed using React Native enabling the targetting of multi-platform (iOS, Android) with a single codebase, greatly reducing both the cost and timeline to deliver on the project.",
-					"images": ["/assets/portfolio/cashfloo.svg"]
+					"images": ["/assets/portfolio/cashfloo.svg"],
+					"stack": [
+						"/assets/stack/html.svg",
+						"/assets/stack/css.svg",
+						"/assets/stack/javascript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/mysql.svg"
+					]
 				},
 				{
 					"description": "Nobuntu an innovative Fintech / Insurtech startup offering a community driven savings product and pension alternative for low income earners. Requireing a suite of apps built to support self service onboarding and claims management over USSD, feature phone, and low range smart phones web browsers.",
-					"images": ["/assets/portfolio/nobuntu.svg"]
+					"images": ["/assets/portfolio/nobuntu.svg"],
+					"stack": [
+						"/assets/stack/html.svg",
+						"/assets/stack/css.svg",
+						"/assets/stack/javascript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/mysql.svg",
+						"/assets/stack/aws.svg"
+					]
 				}
 			]
 		},
@@ -38,23 +66,69 @@
 			"projects": [
 				{
 					"description": "AAMP required the design and development of a bespoke product information management system (PIM), consolidating disparate data sources into a single source of truth for all product information, to be displayed on a network of Shopify Plus storefronts and external dealer portals. Services included: theme 2.0 development, custom storefront and admin app development on the Shopify Platform using Liquid, React and Polaris.",
-					"images": ["/assets/portfolio/aamp.svg"]
+					"images": ["/assets/portfolio/aamp.svg"],
+					"stack": [
+						"/assets/stack/shopify.svg",
+						"/assets/stack/html.svg",
+						"/assets/stack/css.svg",
+						"/assets/stack/javascript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/postgresql.svg",
+						"/assets/stack/heroku.svg"
+					]
 				},
 				{
 					"description": "Stingerkits required the design and development of a bespoke product configurator storefront app to guide potential customers in building a kit for their unique vehicle. The project included development of a backoffice administration app to enable non-technical backoffice staff to administrate the data driving the configurator. Services included: theme development & integration, custom storefront & backoffice apps on the Shopify Platform using React, Polaris, Hydrogen and Oxygen.",
-					"images": ["/assets/portfolio/stingerkits.svg"]
+					"images": ["/assets/portfolio/stingerkits.svg"],
+					"stack": [
+						"/assets/stack/shopify.svg",
+						"/assets/stack/html.svg",
+						"/assets/stack/css.svg",
+						"/assets/stack/javascript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/postgresql.svg",
+						"/assets/stack/heroku.svg"
+					]
 				},
 				{
 					"description": "Foldabox required a multi-store custom backoffice reporting app to speed up and simplify the tedious manual monthly process of reconciling multiple payment providers to meet local tax reporting requirements. The app enables non technical staff to generate reports ondemand using Shopify bulk queries.",
-					"images": ["/assets/portfolio/foldabox.svg"]
+					"images": ["/assets/portfolio/foldabox.svg"],
+					"stack": [
+						"/assets/stack/shopify.svg",
+						"/assets/stack/javascript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/redis.svg",
+						"/assets/stack/heroku.svg"
+					]
 				},
 				{
 					"description": "PucciManuli required a custom storefront and backoffice app to enable their non technical team to create customized purchasing journeys with the goal of increasing average order values. The use case was to enable customers to shop for gifts, games and toys for the whole family, including customized packaging, git cards and delivery addresses.",
-					"images": ["/assets/portfolio/puccimanuli.svg"]
+					"images": ["/assets/portfolio/puccimanuli.svg"],
+					"stack": [
+						"/assets/stack/shopify.svg",
+						"/assets/stack/html.svg",
+						"/assets/stack/css.svg",
+						"/assets/stack/javascript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/heroku.svg"
+					]
 				},
 				{
 					"description": "Grip6 required a custom storefront and backoffice app to work around platform limitations, enabling integrated incentivized bundling, discounting and upselling to increase average order values.",
-					"images": ["/assets/portfolio/grip6.svg"]
+					"images": ["/assets/portfolio/grip6.svg"],
+					"stack": [
+						"/assets/stack/shopify.svg",
+						"/assets/stack/html.svg",
+						"/assets/stack/css.svg",
+						"/assets/stack/javascript.svg",
+						"/assets/stack/react.svg",
+						"/assets/stack/nodejs.svg",
+						"/assets/stack/heroku.svg"
+					]
 				}
 			]
 		},
@@ -63,19 +137,35 @@
 			"projects": [
 				{
 					"description": "ShopOps selected Cloudflare as they go-to developer plaform, leveraging the Workers (Compute, Durable Objects, KV, Storage) platform to deliver on an edge computing requirements. Delivered using multi-stage Docker containers, and automated continous deployments using github actions.",
-					"images": ["/assets/portfolio/shopops.svg"]
+					"images": ["/assets/portfolio/shopops.svg"],
+					"stack": [
+						"/assets/stack/shopify.svg",
+						"/assets/stack/bash.svg",
+						"/assets/stack/cloudflare.svg"
+					]
 				},
 				{
 					"description": "AAMP selected the low maintenance platform Heroku, utilizing Platform (Runtime, Shield) and Data (Postgres, Redis). Delivered using Docker containers, with gitops triggering automated continous blue green deployments.",
-					"images": ["/assets/portfolio/aamp.svg"]
+					"images": ["/assets/portfolio/aamp.svg"],
+					"stack": [
+						"/assets/stack/shopify.svg",
+						"/assets/stack/bash.svg",
+						"/assets/stack/heroku.svg"
+					]
 				},
 				{
 					"description": "Alpha Experience selected Google Cloud Platform (GCP), utilising Compute, Containers, Databases (PostgreSQL, Firebase Realtime Database), Developer Tools (gitops), Networking (DNS, CDN, Load Balancing, VPC), Operations (Logging, Monitoring, Tracing), Storage & Serverless. Delivered using Terraform HCL, infrastructure as code.",
-					"images": ["/assets/portfolio/alphaxp.svg"]
+					"images": ["/assets/portfolio/alphaxp.svg"],
+					"stack": [
+						"/assets/stack/terraform.svg",
+						"/assets/stack/firebase.svg",
+						"/assets/stack/gcp.svg"
+					]
 				},
 				{
 					"description": "Nobuntu operating in a highly regulated environment selected Amazon Web Services (AWS), utilzing Compute (EC2, Lambda), Storage, Database (DocumentDB, DynamoDB, MySQL), Networking, Security and Developer tooling (CodeArtifact, CodeBuild, CodePipeline). Delivered using Terraform HCL, infrastructure as code.",
-					"images": ["/assets/portfolio/nobuntu.svg"]
+					"images": ["/assets/portfolio/nobuntu.svg"],
+					"stack": ["/assets/stack/terraform.svg", "/assets/stack/aws.svg"]
 				}
 			]
 		},
@@ -84,11 +174,13 @@
 			"projects": [
 				{
 					"description": "Alpha Experience making the right connections happen. A boutique talent management agency based out of South East Asian requiring a brand identify, color scheme, website and social collateral.",
-					"images": ["/assets/portfolio/alphaxp.design.svg"]
+					"images": ["/assets/portfolio/alphaxp.design.svg"],
+					"stack": ["/assets/stack/figma.svg"]
 				},
 				{
 					"description": "Nvent smart connections. A IOT brand with global ambitions to power the economy of things requiring a brand identify, strategy, product conceptualization, website and general marketing collateral.",
-					"images": ["/assets/portfolio/nvent.design.svg"]
+					"images": ["/assets/portfolio/nvent.design.svg"],
+					"stack": ["/assets/stack/sketch.svg"]
 				}
 			]
 		}
