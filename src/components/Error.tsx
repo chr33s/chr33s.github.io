@@ -68,8 +68,8 @@ type PageProps = Props & {
 
 export function Page({ children }: PageProps) {
 	return (
-		<Page>
+		<main className="p-6 sm:p-0 flex min-h-screen w-screen flex-col items-center justify-center">
 			<h1>{children}</h1>
-		</Page>
+		</main>
 	);
 }

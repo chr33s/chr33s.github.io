@@ -4,7 +4,6 @@ import * as React from "react";
 
 import { Form } from "./Form";
 import { Image } from "./Image";
-import { Page } from "./Page";
 import * as utils from "../utils";
 
 type Project = {
@@ -241,11 +240,11 @@ export function Portfolio({ data }: Props) {
 	}, []);
 
 	return (
-		<Page>
+		<main className="p-6 sm:p-0 flex min-h-screen w-screen flex-col items-center justify-center">
 			<Header />
 			<Main data={data} />
 			<Footer />
-		</Page>
+		</main>
 	);
 }
 

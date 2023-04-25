@@ -1,5 +1,3 @@
-import { Page } from "./Page";
-
 export function Loading() {
 	return (
 		<div className="m-auto inline-flex">
@@ -12,8 +10,8 @@ export function Loading() {
 
 Loading.Page = function () {
 	return (
-		<Page>
+		<main className="flex min-h-screen w-screen flex-col items-center justify-center">
 			<Loading />
-		</Page>
+		</main>
 	);
 };

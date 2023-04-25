@@ -3,5 +3,4 @@ export * from "./Form";
 export * from "./Image";
 export * from "./Loading";
 export * from "./Notification";
-export * from "./Page";
 export * from "./Portfolio";
