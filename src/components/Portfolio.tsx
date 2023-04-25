@@ -231,8 +231,8 @@ function Main({ data }: Props) {
 
 export function Portfolio({ data }: Props) {
 	React.useEffect(() => {
-		const doc = window.document;
 		const title = `${data.name}'s Portfolio`;
+		const doc = window.document;
 		doc.title = title;
 		doc
 			.querySelector('meta[name="description"]')
