@@ -229,6 +229,24 @@ function Main({ data }: Props) {
 	);
 }
 
+function Paginate({
+	onClick,
+	selected,
+}: {
+	onClick: () => void;
+	selected: boolean;
+}) {
+	return (
+		<button
+			className={clsx(
+				"block w-2 h-2 rounded-full",
+				selected ? "bg-gray-900" : "bg-gray-200"
+			)}
+			onClick={onClick}
+		/>
+	);
+}
+
 export function Portfolio({ data }: Props) {
 	React.useEffect(() => {
 		const title = `${data.name}'s Portfolio`;
@@ -275,13 +293,10 @@ function Project({ project }: { project: Project }) {
 				<div className="hidden group-hover:flex w-full justify-center absolute top-6 left-0">
 					<div className="flex space-x-2 bg-white rounded-[14px] px-[5px] py-[3px] w-auto">
 						{project.images.map((_: any, index: number) => (
-							<button
-								className={clsx(
-									"block w-2 h-2 rounded-full",
-									selected === index ? "bg-gray-900" : "bg-gray-200"
-								)}
+							<Paginate
 								key={`${index}-pagination`}
 								onClick={() => onClick(index)}
+								selected={selected === index}
 							/>
 						))}
 					</div>
@@ -292,25 +307,26 @@ function Project({ project }: { project: Project }) {
 
 				{project.stack?.length > 0 && (
 					<div className="px-4 space-x-4 mb-4 flex">
-						{project.stack.map((image: string, index: number) => {
-							const title = utils.toTitleCase(
-								image.match(/\/([a-z-_]*).[a-z]*$/i)?.[1]
-							);
-
-							return (
-								<img
-									alt={title}
-									className="w-5 h-5 grayscale hover:grayscale-0"
-									key={`${index}-stack`}
-									src={image}
-									title={title}
-								/>
-							);
-						})}
+						{project.stack.map((image: string, index: number) => (
+							<Stack key={`${index}-stack`} image={image} />
+						))}
 					</div>
 				)}
 			</div>
 		</dd>
+	);
+}
+
+function Stack({ image }: { image: string }) {
+	const title = utils.toTitleCase(image.match(/\/([a-z-_]*).[a-z]*$/i)?.[1]);
+
+	return (
+		<img
+			alt={title}
+			className="w-5 h-5 grayscale hover:grayscale-0"
+			src={image}
+			title={title}
+		/>
 	);
 }
 
@@ -323,16 +339,22 @@ function Testimonials({ data }: Props) {
 
 			<div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-16">
 				{data.testimonials.map((testimonial: any, index: number) => (
-					<figure key={index}>
-						<blockquote className="text-sm mb-3 text-gray-600 before:text-gray-500 before:content-['\201C'] before:text-5xl before:inline before:leading-[5px] before:mr-[0.25em] before:align-[-0.4em] after:text-gray-500 after:content-['\201D'] after:text-5xl after:inline after:leading-[5px] after:ml-[0.25em] after:align-[-0.6em]">
-							{testimonial.description}
-						</blockquote>
-						<figcaption className="text-gray-700 italic">
-							{testimonial.name}
-						</figcaption>
-					</figure>
+					<Testimonial key={index} testimonial={testimonial} />
 				))}
 			</div>
 		</section>
+	);
+}
+
+function Testimonial({ testimonial }: { testimonial: Testimonial }) {
+	return (
+		<figure>
+			<blockquote className="text-sm mb-3 text-gray-600 before:text-gray-500 before:content-['\201C'] before:text-5xl before:inline before:leading-[5px] before:mr-[0.25em] before:align-[-0.4em] after:text-gray-500 after:content-['\201D'] after:text-5xl after:inline after:leading-[5px] after:ml-[0.25em] after:align-[-0.6em]">
+				{testimonial.description}
+			</blockquote>
+			<figcaption className="text-gray-700 italic">
+				{testimonial.name}
+			</figcaption>
+		</figure>
 	);
 }
