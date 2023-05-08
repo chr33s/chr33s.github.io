@@ -331,6 +331,10 @@ function Stack({ image }: { image: string }) {
 }
 
 function Testimonials({ data }: Props) {
+	if (data.testimonials.length === 0) {
+		return null;
+	}
+
 	return (
 		<section className="mt-24" id="testimonials">
 			<h2 className="text-3xl font-medium text-gray-700 mb-12 mt-6">
