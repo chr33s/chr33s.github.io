@@ -51,7 +51,7 @@ function Footer() {
 	);
 }
 
-function Header() {
+function Header({ data }: Props) {
 	const onClick = React.useCallback((e: any) => {
 		e.preventDefault();
 
@@ -73,14 +73,16 @@ function Header() {
 				>
 					Expertise
 				</a>
-				<a
-					aria-label="Link to Testimonials"
-					className="hover:text-gray-800"
-					href="#testimonials"
-					onClick={onClick}
-				>
-					Testimonials
-				</a>
+				{data.testimonials.length !== 0 && (
+					<a
+						aria-label="Link to Testimonials"
+						className="hover:text-gray-800"
+						href="#testimonials"
+						onClick={onClick}
+					>
+						Testimonials
+					</a>
+				)}
 				<a
 					aria-label="Link to Contact form"
 					className="hover:text-gray-800"
@@ -259,7 +261,7 @@ export function Portfolio({ data }: Props) {
 
 	return (
 		<main className="p-6 sm:p-0 flex min-h-screen w-screen flex-col items-center justify-center">
-			<Header />
+			<Header data={data} />
 			<Main data={data} />
 			<Footer />
 		</main>
