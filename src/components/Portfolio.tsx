@@ -338,7 +338,7 @@ function Testimonials({ data }: Props) {
 	}
 
 	return (
-		<section className="mt-24" id="testimonials">
+		<section className="mt-32" id="testimonials">
 			<h2 className="text-3xl font-medium text-gray-700 mb-12 mt-6">
 				Project Testimonials
 			</h2>
@@ -355,10 +355,10 @@ function Testimonials({ data }: Props) {
 function Testimonial({ testimonial }: { testimonial: Testimonial }) {
 	return (
 		<figure>
-			<blockquote className="text-sm mb-3 text-gray-600 before:text-gray-500 before:content-['\201C'] before:text-5xl before:inline before:leading-[5px] before:mr-[0.25em] before:align-[-0.4em] after:text-gray-500 after:content-['\201D'] after:text-5xl after:inline after:leading-[5px] after:ml-[0.25em] after:align-[-0.6em]">
+			<blockquote className="text-sm mb-3 text-gray-700 before:text-gray-500 before:content-['\201C'] before:text-5xl before:inline before:leading-[5px] before:mr-[0.25em] before:align-[-0.4em] after:text-gray-500 after:content-['\201D'] after:text-5xl after:inline after:leading-[5px] after:ml-[0.25em] after:align-[-0.6em]">
 				{testimonial.description}
 			</blockquote>
-			<figcaption className="text-gray-700 italic">
+			<figcaption className="text-gray-500 italic">
 				{testimonial.name}
 			</figcaption>
 		</figure>
