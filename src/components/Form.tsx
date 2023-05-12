@@ -5,6 +5,8 @@ import { Input } from "./Input";
 import { Notification } from "./Notification";
 import * as Error from "./Error";
 
+const HOST = process.env.HOST ?? "";
+
 type FormProps = {
 	children: React.ReactNode;
 	errorMessage: string;
@@ -221,7 +223,7 @@ type MutateProps = {
 };
 
 async function mutate({ query, variables }: MutateProps) {
-	const url = "/api/graphql";
+	const url = `${HOST}/api/graphql`;
 	const req: any = await fetch(url, {
 		body: JSON.stringify({
 			query,

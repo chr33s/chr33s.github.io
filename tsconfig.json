@@ -19,15 +19,15 @@
 		"noUnusedParameters": false,
 		"outDir": "./public",
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./functions/*", "./src/*"]
 		},
 		"preserveWatchOutput": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "es2021",
-		"types": ["vite/client"]
+		"types": ["@cloudflare/workers-types", "vite/client"]
 	},
 	"exclude": ["node_modules"],
-	"include": ["./src/**/*.ts", "./src/**/*.tsx"]
+	"include": ["./**/*.ts", "./**/*.tsx"]
 }

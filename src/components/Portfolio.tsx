@@ -98,8 +98,8 @@ function Header({ data }: Props) {
 
 function Contact({ data }: Props) {
 	const query = /* GraphQL */ `
-		mutation ContactForm($input: ContactFormInput!) {
-			contactForm(input: $input)
+		mutation Contact($input: ContactInput!) {
+			contact(input: $input)
 		}
 	`;
 

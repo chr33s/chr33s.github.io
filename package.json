@@ -10,13 +10,14 @@
 		"prebuild": "npm run checks",
 		"build": "vite build",
 		"checks": "npm-run-all typecheck lint format",
-		"dev": "vite dev --port=8080",
+		"dev": "wrangler pages dev --binding=$(cat .env | xargs) --compatibility-date=2023-05-11 --port=${PORT} --proxy=1${PORT} -- vite dev --port=1${PORT}",
 		"lint": "eslint",
 		"format": "prettier --write \"**/*.{css,ts,tsx,md}\"",
 		"test": "vitest",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "4.20230419.0",
 		"@heroicons/react": "2.0.17",
 		"@tailwindcss/forms": "0.5.3",
 		"@types/node": "18.15.11",
@@ -42,7 +43,8 @@
 		"ts-node": "10.9.1",
 		"typescript": "5.0.4",
 		"vite": "4.2.2",
-		"vitest": "0.30.1"
+		"vitest": "0.30.1",
+		"wrangler": "2.20.0"
 	},
 	"eslintConfig": {
 		"root": true,
@@ -61,5 +63,11 @@
 				}
 			}
 		]
+	},
+	"dependencies": {
+		"apollo-server-errors": "3.3.1",
+		"graphql": "16.6.0",
+		"graphql-constraint-directive": "5.1.0",
+		"graphql-yoga": "3.9.1"
 	}
 }
