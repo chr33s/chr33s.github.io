@@ -97,12 +97,6 @@ function Header({ data }: Props) {
 }
 
 function Contact({ data }: Props) {
-	const query = /* GraphQL */ `
-		mutation Contact($input: ContactInput!) {
-			contact(input: $input)
-		}
-	`;
-
 	return (
 		<section
 			className="flex justify-center items-center sm:mt-6 sm:mb-36 h-screen"
@@ -136,8 +130,8 @@ function Contact({ data }: Props) {
 				</div>
 				<Form
 					errorMessage="Form submission failed"
-					query={query}
 					successMessage="Form submitted successfully"
+					uri="/api"
 				>
 					<Form.Input
 						label="Company Name"

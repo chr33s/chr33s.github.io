@@ -11,14 +11,14 @@ type FormProps = {
 	children: React.ReactNode;
 	errorMessage: string;
 	successMessage: string;
-	query: string;
+	uri: string;
 };
 
 export function Form({
 	children,
 	errorMessage,
-	query,
 	successMessage,
+	uri,
 	...props
 }: FormProps) {
 	const withRecursiveProps = React.useCallback(
@@ -150,18 +150,24 @@ export function Form({
 				const form = el.target as HTMLFormElement;
 
 				const data = new FormData(form);
-				let variables = {};
+				let body = {};
 				for (const [key, val] of data.entries()) {
-					variables = merge(variables, objectFromArrayNotation(key, val));
+					body = merge(body, objectFromArrayNotation(key, val));
 				}
 
-				const res = await mutate({ query, variables });
-				if (res.errors?.length > 0) {
+				const url = `${HOST}${uri}`;
+				const req: any = await fetch(url, {
+					body: JSON.stringify(body),
+					headers: new Headers({ "Content-type": "application/json" }),
+					method: "POST",
+				});
+				if (!req.ok) {
 					throw new Error.App({
-						errors: res.errors,
-						message: errorMessage,
+						message: "Error fetching data",
 					});
 				}
+
+				await req.json();
 
 				setNotification({
 					message: successMessage,
@@ -185,7 +191,7 @@ export function Form({
 				setTimeout(() => setSubmitting(false), 750);
 			}
 		},
-		[errorMessage, query, successMessage]
+		[errorMessage, successMessage, uri]
 	);
 
 	const withRecursivePropsCallback = React.useCallback(
@@ -216,35 +222,3 @@ export function Form({
 
 Form.Button = Button;
 Form.Input = Input;
-
-type MutateProps = {
-	query: string;
-	variables?: any;
-};
-
-async function mutate({ query, variables }: MutateProps) {
-	const url = `${HOST}/api/graphql`;
-	const req: any = await fetch(url, {
-		body: JSON.stringify({
-			query,
-			variables,
-		}),
-		headers: new Headers({ "Content-type": "application/json" }),
-		method: "POST",
-	});
-	if (!req.ok) {
-		throw new Error.App({
-			message: "Error fetching data",
-		});
-	}
-
-	const res: any = await req.json();
-	if (res.errors?.length > 0) {
-		throw new Error.App({
-			errors: res.errors,
-			message: "Error in response data",
-		});
-	}
-
-	return res.data;
-}
