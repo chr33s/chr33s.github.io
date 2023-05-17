@@ -11,6 +11,7 @@
 		"build": "vite build",
 		"checks": "npm-run-all typecheck lint format",
 		"dev": "wrangler pages dev --binding=$(cat .env | xargs) --compatibility-date=2023-05-11 --port=${PORT} --proxy=1${PORT} -- vite dev --port=1${PORT}",
+		"deploy": "export $(cat .env.production | xargs); npm run build && wrangler pages publish ./dist --project-name chr33s --branch main && git push",
 		"lint": "eslint",
 		"format": "prettier --write \"**/*.{css,ts,tsx,md}\"",
 		"test": "vitest",
