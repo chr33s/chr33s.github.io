@@ -199,5 +199,14 @@
 			"url": "https://twitter.com/chr33s"
 		}
 	],
-	"testimonials": []
+	"testimonials": [
+		{
+			"description": "I've worked with Chris for several years now, and have thoroughly enjoyed every second of our collaborations. He is incredibly knowledgeable and very thorough. He is skilled at managing relationships and projects as well as at development. He is always quick to respond to new requests and works with speed without sacrificing attention to detail. I've also enjoyed insightful questions, scintillating conversations, and notes that ensure every angle of a project or task is covered. I have no hesitation in recommending him for whatever challenge you'd like him to tackle.",
+			"name": "Barbara, Glue"
+		},
+		{
+			"description": "I had the pleasure of working with Chris on an insurtech company where Chris served as our CTO. His very clear and comprehensive communication skills along with his extensive technical knowledge meant that we were able to develop an exciting technical roadmap where the technology solution met the business need perfectly. Chris is results and goal driven which is important in a fast moving industry yet he still maintained the strategic mindset required in a senior team member leading the tech direction.",
+			"name": "Tyron, Nobuntu"
+		}
+	]
 }
