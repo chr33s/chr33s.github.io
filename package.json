@@ -10,19 +10,21 @@
 		"prebuild": "npm run checks",
 		"build": "vite build",
 		"checks": "npm-run-all typecheck lint format",
-		"dev": "vite dev --port=8080",
+		"dev": "wrangler pages dev --binding=$(cat .env | xargs) --compatibility-date=2023-05-11 --port=${PORT} --proxy=1${PORT} -- vite dev --port=1${PORT}",
+		"deploy": "export $(cat .env.production | xargs); npm run build && wrangler pages publish ./dist --project-name chr33s --branch main && git push",
 		"lint": "eslint",
 		"format": "prettier --write \"**/*.{css,ts,tsx,md}\"",
 		"test": "vitest",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "4.20230419.0",
 		"@heroicons/react": "2.0.17",
 		"@tailwindcss/forms": "0.5.3",
-		"@types/node": "^18.15.11",
+		"@types/node": "18.15.11",
 		"@types/postcss-import": "14.0.0",
-		"@types/react": "^18.0.35",
-		"@types/react-dom": "^18.0.11",
+		"@types/react": "18.0.37",
+		"@types/react-dom": "18.0.11",
 		"@vitejs/plugin-react": "3.1.0",
 		"autoprefixer": "10.4.14",
 		"clsx": "1.2.1",
@@ -34,22 +36,34 @@
 		"npm-run-all": "4.1.5",
 		"postcss": "8.4.22",
 		"postcss-import": "15.1.0",
-		"postcss-preset-env": "8.3.1",
-		"prettier": "^2.8.7",
+		"postcss-preset-env": "8.3.2",
+		"prettier": "2.8.7",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"tailwindcss": "3.3.1",
 		"ts-node": "10.9.1",
 		"typescript": "5.0.4",
-		"vite": "4.2.1",
-		"vitest": "0.30.1"
+		"vite": "4.2.2",
+		"vitest": "0.30.1",
+		"wrangler": "2.20.0"
 	},
+	"dependencies": {},
 	"eslintConfig": {
 		"root": true,
 		"extends": [
 			"react",
 			"prettier",
 			"tailwindcss"
+		]
+	},
+	"prettier": {
+		"overrides": [
+			{
+				"files": "*.svg",
+				"options": {
+					"parser": "html"
+				}
+			}
 		]
 	}
 }
