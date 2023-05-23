@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
       - run: npm run build --ignore-scripts
         env:
-          HOST: ${{ secrets.HOST }}
+          HOST: ${{ env.HOST }}
       - uses: actions/upload-pages-artifact@v1
         with:
           path: "dist/"
