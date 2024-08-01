@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "18.x"
           cache: "npm"
+          node-version-file: "package.json"
       - run: npm ci
       - run: npm run build --ignore-scripts
         env:
           HOST: ${{ env.HOST }}
-      - uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: "dist/"
 
@@ -34,4 +34,4 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/deploy-pages@v1
+      - uses: actions/deploy-pages@v4
