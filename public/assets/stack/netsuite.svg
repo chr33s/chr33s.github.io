@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="57px" height="54.6840796px" viewBox="0 0 57 54.6840796" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="www" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-1223.84, -2829.24)" fill-rule="nonzero" id="home">
+            <g transform="translate(-167, -101)">
+                <g id="how" transform="translate(415, 2337.5)">
+                    <g id="icons" transform="translate(0, 557.5)">
+                        <g id="color" transform="translate(38.2492, 25)">
+                            <g id="netsuite" transform="translate(937.5908, 10.24)">
+                                <path d="M2.59950249,15.0771144 L13.800995,15.0771144 L13.800995,41.6865672 L19.3781095,41.6865672 L19.3781095,52.0845771 L2.59950249,52.0845771 L2.59950249,15.0771144 Z M54.4477612,39.5597015 L43.2462687,39.5597015 L43.2462687,12.9502488 L37.6691542,12.9502488 L37.6691542,2.55223881 L54.4477612,2.55223881 L54.4477612,39.5597015 Z" id="Shape" fill="#BACCDB"></path>
+                                <path d="M0,0 L35.4004975,0 L35.4004975,30.3905473 L21.7885572,12.8557214 L0,12.8557214 L0,0 Z M57,54.6840796 L21.5995025,54.6840796 L21.5995025,24.2935323 L35.2114428,41.8283582 L57,41.8283582" id="Shape" fill-opacity="0.85" fill="#125580"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
