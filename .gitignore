@@ -1,3 +1,4 @@
 .env*
+.wrangler
 dist
 node_modules

@@ -44,7 +44,7 @@ export function Form({
 				}
 				return React.cloneElement(child, props);
 			}),
-		[]
+		[],
 	);
 
 	const merge = React.useCallback((target = {}, source = {}): any => {
@@ -72,13 +72,13 @@ export function Form({
 				throw new Error.App(`Invalid string "${key}"`);
 			}
 
-			const matches = key.match(/^(?!\[)[^\[]+|(?!\[)[^\[\]]+(?=\])/g) ?? [];
+			const matches = key.match(/^(?!\[)[^[]+|(?!\[)[^[\]]+(?=\])/g) ?? [];
 			for (const v of matches.reverse()) {
 				object = { [v]: object };
 			}
 			return object;
 		},
-		[]
+		[],
 	);
 
 	const arrayNotationFromDotNotation = React.useCallback(
@@ -101,7 +101,7 @@ export function Form({
 
 			return arrayNotation;
 		},
-		[]
+		[],
 	);
 
 	const format = React.useCallback((errors: any[]): any[] => {
@@ -111,7 +111,7 @@ export function Form({
 			_errors[i] = errors[i];
 			if (_errors[i].extensions?.field) {
 				_errors[i].extensions.field = arrayNotationFromDotNotation(
-					_errors[i].extensions.field
+					_errors[i].extensions.field,
 				);
 			}
 		}
@@ -133,7 +133,7 @@ export function Form({
 
 			return false;
 		},
-		[]
+		[],
 	);
 
 	const [errors, setErrors] = React.useState<any>([]);
@@ -191,7 +191,7 @@ export function Form({
 				setTimeout(() => setSubmitting(false), 750);
 			}
 		},
-		[errorMessage, successMessage, uri]
+		[errorMessage, successMessage, uri],
 	);
 
 	const withRecursivePropsCallback = React.useCallback(
@@ -199,12 +199,12 @@ export function Form({
 			error: hasValidationError(errors, child.props.name) && "invalid",
 			isSubmitting,
 		}),
-		[errors, isSubmitting]
+		[errors, isSubmitting],
 	);
 
 	const childrenWithProps = React.useMemo(
 		() => withRecursiveProps(children, withRecursivePropsCallback),
-		[children]
+		[children],
 	);
 
 	return (

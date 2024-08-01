@@ -14,7 +14,7 @@ export default {
 						"animation-delay": value,
 					}),
 				},
-				{ values: theme("transitionDelay") }
+				{ values: theme("transitionDelay") },
 			);
 		}),
 		plugin(({ matchUtilities }) => {
@@ -31,7 +31,7 @@ export default {
 						precision: "geometricPrecision",
 						speed: "optimizeSpeed",
 					},
-				}
+				},
 			);
 		}),
 	],

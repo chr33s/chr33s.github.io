@@ -70,7 +70,7 @@ export function Notification({ type = "info", ...props }: NotificationProps) {
 				"body-font fixed top-6 right-6 z-10 flex rounded border px-6 py-4 pr-12 shadow-lg",
 				bgColor,
 				borderColor,
-				textColor
+				textColor,
 			)}
 		>
 			<p className="text-base">{message}</p>

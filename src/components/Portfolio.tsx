@@ -110,7 +110,7 @@ function Contact({ data }: Props) {
 					<ul className="flex flex-row space-x-4 mb-3 sm:mb-0">
 						{data.social.map((profile, index) => {
 							const provider = utils.toTitleCase(
-								profile.url.match(/^https?:\/\/([a-z-_]*)/i)?.[1]
+								profile.url.match(/^https?:\/\/([a-z-_]*)/i)?.[1],
 							);
 
 							return (
@@ -236,7 +236,7 @@ function Paginate({
 		<button
 			className={clsx(
 				"block w-2 h-2 rounded-full",
-				selected ? "bg-gray-900" : "bg-gray-200"
+				selected ? "bg-gray-900" : "bg-gray-200",
 			)}
 			onClick={onClick}
 		/>
@@ -283,7 +283,7 @@ function Project({ project }: { project: Project }) {
 						key={index}
 						src={image}
 					/>
-				)
+				),
 			)}
 			{project.images.length > 1 && (
 				<div className="hidden group-hover:flex w-full justify-center absolute top-6 left-0">
