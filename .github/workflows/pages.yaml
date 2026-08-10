@@ -1,0 +1,37 @@
+name: Github Pages
+
+on:
+  push:
+    branches:
+      - private
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          cache: "npm"
+          node-version-file: "package.json"
+      - run: npm ci
+      - run: npm run build --ignore-scripts
+        env:
+          HOST: ${{ vars.HOST }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "dist/client/"
+
+  deploy:
+    name: Deploy
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/deploy-pages@v4
