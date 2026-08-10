@@ -14,7 +14,8 @@
 		"format": "vp fmt --write",
 		"test": "vp test",
 		"typecheck": "tsc --noEmit",
-		"upgrade": "npm-check-updates --install=always --silent --upgrade && npm audit fix && npm run build"
+		"upgrade": "npm-check-updates --install=always --silent --upgrade && npm audit fix && npm run build",
+		"deploy:pages": "mkdir -p pages/.wrangler/deploy && echo '{\"configPath\":\"../../wrangler.jsonc\"}' > pages/.wrangler/deploy/config.json && wrangler pages deploy --cwd pages"
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "1.51.1",
