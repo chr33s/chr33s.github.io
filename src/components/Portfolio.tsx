@@ -251,7 +251,7 @@ export function Portfolio({ data }: Props) {
 		doc
 			.querySelector('meta[name="description"]')
 			?.setAttribute("content", utils.truncate(data.description, 128));
-	}, []);
+	}, [data.description, data.name]);
 
 	return (
 		<main className="p-6 sm:p-0 flex min-h-screen w-screen flex-col items-center justify-center">
@@ -265,13 +265,16 @@ export function Portfolio({ data }: Props) {
 function Project({ project }: { project: Project }) {
 	const [selected, setSelected] = React.useState(0);
 
-	const onClick = React.useCallback((index: number) => {
-		const img = new window.Image();
-		img.onload = () => {
-			setSelected(index);
-		};
-		img.src = project.images[index];
-	}, []);
+	const onClick = React.useCallback(
+		(index: number) => {
+			const img = new window.Image();
+			img.onload = () => {
+				setSelected(index);
+			};
+			img.src = project.images[index];
+		},
+		[project.images],
+	);
 
 	return (
 		<dd className="group relative border border-gray-200 flex-1 h-full overflow-x-hidden overflow-y-scroll">
@@ -349,7 +352,10 @@ function Testimonials({ data }: Props) {
 function Testimonial({ testimonial }: { testimonial: Testimonial }) {
 	return (
 		<figure>
-			<blockquote className="text-sm mb-3 text-gray-700 before:text-gray-500 before:content-['\201C'] before:text-5xl before:inline before:leading-[5px] before:mr-[0.25em] before:align-[-0.4em] after:text-gray-500 after:content-['\201D'] after:text-5xl after:inline after:leading-[5px] after:ml-[0.25em] after:align-[-0.6em]">
+			{/* Curly quotes are written literally rather than as CSS `\201C`/`\201D`
+			    escapes: Tailwind scans raw source text, and a backslash here reads as
+			    a deprecated octal escape to the linter. */}
+			<blockquote className="text-sm mb-3 text-gray-700 before:text-gray-500 before:content-['“'] before:text-5xl before:inline before:leading-[5px] before:mr-[0.25em] before:align-[-0.4em] after:text-gray-500 after:content-['”'] after:text-5xl after:inline after:leading-[5px] after:ml-[0.25em] after:align-[-0.6em]">
 				{testimonial.description}
 			</blockquote>
 			<figcaption className="text-gray-500 italic">
