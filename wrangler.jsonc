@@ -1,0 +1,16 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "chr33s",
+	"main": "worker/index.ts",
+	"compatibility_date": "2026-08-01",
+	// `assets.directory` is intentionally omitted: @cloudflare/vite-plugin points it
+	// at the client build output. `run_worker_first` keeps the API routes from being
+	// swallowed by the single-page-application fallback.
+	"assets": {
+		"not_found_handling": "single-page-application",
+		"run_worker_first": ["/api", "/api/*"],
+	},
+	"observability": {
+		"enabled": true,
+	},
+}

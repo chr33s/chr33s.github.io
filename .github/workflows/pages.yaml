@@ -3,7 +3,7 @@ name: Github Pages
 on:
   push:
     branches:
-      - main
+      - private
 
 jobs:
   build:
@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: "18.x"
           cache: "npm"
+          node-version-file: "package.json"
       - run: npm ci
       - run: npm run build --ignore-scripts
         env:
-          HOST: ${{ secrets.HOST }}
-      - uses: actions/upload-pages-artifact@v1
+          HOST: ${{ env.HOST }}
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: "dist/"
 
@@ -32,10 +32,6 @@ jobs:
       pages: write
       id-token: write
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/deploy-pages@v1
+      - uses: actions/deploy-pages@v4

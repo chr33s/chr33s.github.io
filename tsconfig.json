@@ -3,7 +3,6 @@
 	"display": "Default",
 	"compilerOptions": {
 		"allowJs": true,
-		"baseUrl": "./",
 		"composite": false,
 		"declaration": true,
 		"declarationMap": true,
@@ -13,21 +12,21 @@
 		"isolatedModules": true,
 		"jsx": "react-jsx",
 		"lib": ["dom", "dom.iterable", "es2021"],
-		"module": "CommonJS",
-		"moduleResolution": "node",
+		"module": "Preserve",
+		"moduleResolution": "Bundler",
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"outDir": "./public",
 		"paths": {
-			"@/*": ["./functions/*", "./src/*"]
+			"@/*": ["./src/*"]
 		},
 		"preserveWatchOutput": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "es2021",
-		"types": ["@cloudflare/workers-types", "vite/client"]
+		"types": ["vite/client"]
 	},
 	"exclude": ["node_modules"],
-	"include": ["./**/*.ts", "./**/*.tsx"]
+	"include": ["./worker-configuration.d.ts", "./**/*.ts", "./**/*.tsx"]
 }

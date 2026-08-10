@@ -1,0 +1,69 @@
+name: Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - private
+
+# One deploy at a time; a newer push supersedes an in-flight run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
+
+    permissions:
+      contents: read
+
+    environment:
+      name: cloudflare
+      url: ${{ steps.deploy.outputs.deployment-url }}
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          cache: "npm"
+          node-version-file: "package.json"
+
+      - name: Install
+        run: npm ci
+
+      # `npm run checks` runs `vp check --fix`, which rewrites files. CI verifies
+      # instead, so formatting or lint drift fails the run rather than being
+      # silently fixed on a throwaway checkout.
+      - name: Check
+        run: npx vp check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      # prebuild is skipped because the steps above already cover it without
+      # mutating the tree. HOST stays empty unless a repository variable is set:
+      # the Worker serves the assets and /api from one origin, so the client
+      # should use same-origin requests.
+      - name: Build
+        run: npm run build --ignore-scripts
+        env:
+          HOST: ${{ vars.HOST }}
+
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Uploaded as Worker Secrets on deploy; each name must match an entry
+          # in the `env` block below.
+          secrets: |
+            GOOGLE_CHAT_WEBHOOK
+        env:
+          GOOGLE_CHAT_WEBHOOK: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}

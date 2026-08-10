@@ -28,23 +28,27 @@ export function Form({
 					return child;
 				}
 
-				if (child.props.children) {
-					child = React.cloneElement(child, {
-						...child.props,
-						children: withRecursiveProps(child.props.children, fn),
+				// React 19 narrows to `ReactElement<unknown>`; this walker threads
+				// arbitrary props through, so keep the element's props untyped.
+				let el = child as React.ReactElement<any>;
+
+				if (el.props.children) {
+					el = React.cloneElement(el, {
+						...el.props,
+						children: withRecursiveProps(el.props.children, fn),
 					});
 				}
 
 				let props;
 				if (
-					typeof child.type === "function" &&
-					["Button", "Input"].includes((child.type as any).displayName)
+					typeof el.type === "function" &&
+					["Button", "Input"].includes((el.type as any).displayName)
 				) {
-					props = fn(child);
+					props = fn(el);
 				}
-				return React.cloneElement(child, props);
+				return React.cloneElement(el, props);
 			}),
-		[]
+		[],
 	);
 
 	const merge = React.useCallback((target = {}, source = {}): any => {
@@ -72,13 +76,13 @@ export function Form({
 				throw new Error.App(`Invalid string "${key}"`);
 			}
 
-			const matches = key.match(/^(?!\[)[^\[]+|(?!\[)[^\[\]]+(?=\])/g) ?? [];
+			const matches = key.match(/^(?!\[)[^[]+|(?!\[)[^[\]]+(?=\])/g) ?? [];
 			for (const v of matches.reverse()) {
 				object = { [v]: object };
 			}
 			return object;
 		},
-		[]
+		[],
 	);
 
 	const arrayNotationFromDotNotation = React.useCallback(
@@ -101,23 +105,26 @@ export function Form({
 
 			return arrayNotation;
 		},
-		[]
+		[],
 	);
 
-	const format = React.useCallback((errors: any[]): any[] => {
-		const _errors: any = structuredClone(errors);
+	const format = React.useCallback(
+		(errors: any[]): any[] => {
+			const _errors: any = structuredClone(errors);
 
-		for (const i in errors) {
-			_errors[i] = errors[i];
-			if (_errors[i].extensions?.field) {
-				_errors[i].extensions.field = arrayNotationFromDotNotation(
-					_errors[i].extensions.field
-				);
+			for (const i in errors) {
+				_errors[i] = errors[i];
+				if (_errors[i].extensions?.field) {
+					_errors[i].extensions.field = arrayNotationFromDotNotation(
+						_errors[i].extensions.field,
+					);
+				}
 			}
-		}
 
-		return _errors;
-	}, []);
+			return _errors;
+		},
+		[arrayNotationFromDotNotation],
+	);
 
 	const hasValidationError = React.useCallback(
 		(data?: any, field?: string): boolean => {
@@ -133,7 +140,7 @@ export function Form({
 
 			return false;
 		},
-		[]
+		[],
 	);
 
 	const [errors, setErrors] = React.useState<any>([]);
@@ -162,12 +169,20 @@ export function Form({
 					method: "POST",
 				});
 				if (!req.ok) {
+					// Validation failures carry `{ errors: [...] }`; a 500 or a proxy
+					// error page has no JSON body, so fall back to an empty list.
+					const payload = await req.json().catch(() => null);
 					throw new Error.App({
-						message: "Error fetching data",
+						errors: payload?.errors ?? [],
+						message: errorMessage,
 					});
 				}
 
 				await req.json();
+
+				// Clear any field errors from a previous attempt, or the inputs stay
+				// marked invalid after a successful resubmit.
+				setErrors([]);
 
 				setNotification({
 					message: successMessage,
@@ -181,7 +196,8 @@ export function Form({
 					message = e.message;
 				}
 
-				setErrors(format(e.errors));
+				// A network failure is not an Error.App and carries no `errors`.
+				setErrors(format(e.errors ?? []));
 
 				setNotification({
 					message,
@@ -191,7 +207,7 @@ export function Form({
 				setTimeout(() => setSubmitting(false), 750);
 			}
 		},
-		[errorMessage, successMessage, uri]
+		[errorMessage, format, merge, objectFromArrayNotation, successMessage, uri],
 	);
 
 	const withRecursivePropsCallback = React.useCallback(
@@ -199,12 +215,15 @@ export function Form({
 			error: hasValidationError(errors, child.props.name) && "invalid",
 			isSubmitting,
 		}),
-		[errors, isSubmitting]
+		[errors, hasValidationError, isSubmitting],
 	);
 
+	// Depends on withRecursivePropsCallback, which changes with `errors` and
+	// `isSubmitting` — without it the inputs never receive updated validation
+	// state after a submit.
 	const childrenWithProps = React.useMemo(
 		() => withRecursiveProps(children, withRecursivePropsCallback),
-		[children]
+		[children, withRecursiveProps, withRecursivePropsCallback],
 	);
 
 	return (

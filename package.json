@@ -2,68 +2,46 @@
 	"name": "@chr33s/portfolio",
 	"version": "1.0.0",
 	"private": true,
-	"engines": {
-		"npm": ">=9.0.0",
-		"node": ">=18.0.0"
-	},
+	"type": "module",
 	"scripts": {
 		"prebuild": "npm run checks",
-		"build": "vite build",
-		"checks": "npm-run-all typecheck lint format",
-		"dev": "wrangler pages dev --binding=$(cat .env | xargs) --compatibility-date=2023-05-11 --port=${PORT} --proxy=1${PORT} -- vite dev --port=1${PORT}",
-		"deploy": "export $(cat .env.production | xargs); npm run build && wrangler pages publish ./dist --project-name chr33s --branch main && git push",
-		"lint": "eslint",
-		"format": "prettier --write \"**/*.{css,ts,tsx,md}\"",
-		"test": "vitest",
-		"typecheck": "tsc --noEmit"
+		"build": "vp build",
+		"checks": "vp check --fix && npm run typecheck",
+		"dev": "vp dev --port=8080",
+		"preview": "vp preview",
+		"deploy": "export $(cat .env.production | xargs); npm run build && wrangler deploy && git push",
+		"lint": "vp lint",
+		"format": "vp fmt --write",
+		"test": "vp test",
+		"typecheck": "tsc --noEmit",
+		"upgrade": "npm-check-updates --install=always --silent --upgrade && npm audit fix && npm run build",
+		"deploy:pages": "mkdir -p pages/.wrangler/deploy && echo '{\"configPath\":\"../../wrangler.jsonc\"}' > pages/.wrangler/deploy/config.json && wrangler pages deploy --cwd pages"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "4.20230419.0",
-		"@heroicons/react": "2.0.17",
-		"@tailwindcss/forms": "0.5.3",
-		"@types/node": "18.15.11",
-		"@types/postcss-import": "14.0.0",
-		"@types/react": "18.0.37",
-		"@types/react-dom": "18.0.11",
-		"@vitejs/plugin-react": "3.1.0",
-		"autoprefixer": "10.4.14",
-		"clsx": "1.2.1",
-		"cssnano": "6.0.0",
-		"eslint": "8.38.0",
-		"eslint-config-prettier": "8.8.0",
-		"eslint-plugin-react": "7.32.2",
-		"eslint-plugin-tailwindcss": "3.11.0",
-		"npm-run-all": "4.1.5",
-		"postcss": "8.4.22",
-		"postcss-import": "15.1.0",
-		"postcss-preset-env": "8.3.2",
-		"prettier": "2.8.7",
-		"react": "18.2.0",
-		"react-dom": "18.2.0",
-		"tailwindcss": "3.3.1",
-		"ts-node": "10.9.1",
-		"typescript": "5.0.4",
-		"vite": "4.2.2",
-		"vitest": "0.30.1",
-		"wrangler": "2.20.0"
+		"@cloudflare/vite-plugin": "1.51.1",
+		"@heroicons/react": "2.2.0",
+		"@tailwindcss/forms": "0.5.11",
+		"@tailwindcss/vite": "4.3.3",
+		"@types/node": "26.2.0",
+		"@types/react": "19.2.18",
+		"@types/react-dom": "19.2.4",
+		"@vitejs/plugin-react": "6.0.5",
+		"clsx": "2.1.1",
+		"npm-check-updates": "23.0.2",
+		"react": "19.2.8",
+		"react-dom": "19.2.8",
+		"tailwindcss": "4.3.3",
+		"typescript": "7.0.2",
+		"vite-plus": "0.2.8",
+		"wrangler": "4.120.0"
 	},
-	"dependencies": {},
-	"eslintConfig": {
-		"root": true,
-		"extends": [
-			"react",
-			"prettier",
-			"tailwindcss"
-		]
+	"engines": {
+		"node": ">=24.0.0",
+		"npm": ">=11.0.0"
 	},
-	"prettier": {
-		"overrides": [
-			{
-				"files": "*.svg",
-				"options": {
-					"parser": "html"
-				}
-			}
-		]
+	"allowScripts": {
+		"esbuild": true,
+		"fsevents": true,
+		"workerd": true
 	}
 }

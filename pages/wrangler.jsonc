@@ -1,0 +1,11 @@
+{
+	"$schema": "../node_modules/wrangler/config-schema.json",
+	// Must match the existing Pages project (chr33s.pages.dev) — deploying under a
+	// new name would create a project rather than lock down the old one.
+	"name": "chr33s",
+	// `public/` holds only `_routes.json`, which Pages treats as configuration and
+	// never serves. The deployment therefore has no assets at all, and every
+	// request falls through to functions/[[path]].ts.
+	"pages_build_output_dir": "public",
+	"compatibility_date": "2026-08-01",
+}

@@ -1,3 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+
+@source "../index.html";
+
+@theme {
+	--font-sans:
+		"Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+	--animate-spinner: spinner 1.4s infinite ease-in-out both;
+
+	@keyframes spinner {
+		0%,
+		80%,
+		100% {
+			transform: scale(0);
+		}
+		40% {
+			transform: scale(1);
+		}
+	}
+}
+
+@utility animation-delay-* {
+	animation-delay: --value([*]);
+}
+
+@utility text-rendering-auto {
+	text-rendering: auto;
+}
+
+@utility text-rendering-legibility {
+	text-rendering: optimizeLegibility;
+}
+
+@utility text-rendering-precision {
+	text-rendering: geometricPrecision;
+}
+
+@utility text-rendering-speed {
+	text-rendering: optimizeSpeed;
+}
